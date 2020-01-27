@@ -1,0 +1,8 @@
+Initially designed to read in Bro network files which are stored as multiple JSON records in a single file, and converts them to SQL tables in SQLite.
+
+$: python3 convertjson.py <filename>
+The above command automatically creates and connects to a "bro.db" SQLite database.
+It will also create a table with the name of the argument given and read in the corresponding Bro .log file. Importantly, the table is created with columns which are arbitrarily taken from the keys from the first json line in the file. Because of this method, it may introduce errors later in the file, as it is not ideal.
+The script will then begin parsing data and inserting the key:value into the corresponding column in the sqlite database.
+
+This reduces file size by about 7 times, or increases overall disk space (if original json file is kept) by 1.7
